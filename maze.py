@@ -7,7 +7,7 @@ wn.title("Maze Game")
 wn.setup(700,700)
 
 
-#registershapes
+
 turtle.register_shape("wizardright.gif")
 turtle.register_shape("wizardleft.gif")
 turtle.register_shape("treasure.gif")
@@ -15,14 +15,14 @@ turtle.register_shape("wall.gif")
 
 
  
-#create pen
+
 class Pen(turtle.Turtle):
    
     def __init__(self):
        
         turtle.Turtle.__init__(self)
-        self.shape("square")
-        self.color("white")
+        self.shape("wizardleft.gif")
+        self.color("blue")
         self.penup()
         self.speed(0)
  
@@ -63,70 +63,71 @@ class Player(turtle.Turtle):
         if (move_to_x, move_to_y) not in walls:
             self.goto(move_to_x, move_to_y)
  
-#create level list
+
 levels = [""]
  
-#Define first level
+
 level_1 = [
-"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-"Xp   XXXXXXX        XXXXX",
-"X           XXXXXX  XXXXX",
-"X  XXXXXXX          XXXXX",
-"X  XXXXXXXXXXXXXXXXXXXXXX",
-"X  XXXXXXXXXXXXXXXXXXXXXX",
-"X                       X",
-"XXXXXXX  XXXXXXXXXXXXXXXX",
-"XXXXXX   XXXXXXXXXXXXXXXX",
-"XXXXXX                  X",
-"XXXXXX   XXXXXXXXXXXXXXXX",
-"XXXXXX   XXXXXXXXXXXXXXXX",
-"X                       X",
-"XXXXX    XXXXXXXXXX   XXX",
-"X        XXXXXXXXXXXXXXXX",
-"XXXXXX   XXXXXXXXXXXXXXXX",
-"X                        ",
-"XXXXXXXXXXXXX   XXXXXXXXX",
-"XXXXXX   XXXX   XXXXXXXXX",
-"XXXXX    XXXX           X",
-"X                      XX",
-"XXXXXXX   YXXXXXXXXXXXXXX",
-"XXXXXX     XXXXX     XXXX",
-"XXXXXX                XXX",
-"XXXXXXXXXXXXXXXXXXXXXXXXX"
+
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XPXXXXXXXX  XXXXXXXXXXXXXXXXXXXXXXXXX",
+ "X  XX   XXX XXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XX XX X XX  XXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XX  X X XX XXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXX   X XX XXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXX XXXXX XXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXX  XXXX  XXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXX XXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXX XXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXX XXXX  XXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXX   X  XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXX   XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXX XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 ]
  
    
 levels.append(level_1)
  
-#Create Level Setup Fuction
+
 def setup_maze(level):
     for y in range(len(level)):
         for x in range(len(level[y])):
            
-            #Get the caracter at each x,y cordinate            
+                        
             character = level[y][x]
-            #Calculate the screen x, y coordinates
+            
             screen_x = -288 + (x * 24)
             screen_y = 288 - (y * 24)
  
-            #Check if it is an X
+            
             if character == "X":
                 pen.goto(screen_x, screen_y)
                 pen.stamp()
-                #Add coordinates to wall list
+                
                 walls.append((screen_x,screen_y))
            
            
-            #Check if it is a P (Player)
+            
             if character == "P":
                 pen.goto(screen_x, screen_y)
-               
+
+          
  
-#class instances
+
 pen = Pen()
 player = Player()
  
-#Create wall cordinate List
+
 walls = []
  
  
@@ -139,10 +140,10 @@ turtle.onkey(player.go_right,"Right")
 turtle.onkey(player.go_up,"Up")
 turtle.onkey(player.go_down,"Down")
  
-#Turn off screen updates
+
 wn.tracer(0)
  
-#main game loop
+
 while True:
-    #Update screen
+    
     wn.update()
